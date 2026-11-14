@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>邪馬台国マインスイーパー</title>
+  <meta name="description" content="旧国名の地図で遊ぶマインスイーパー。卑弥呼のお宝を掘り当てずに、すべての国を調べ尽くせ。">
+  <meta name="theme-color" content="#2a1d14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M38 8a22 22 0 1 1-24 30c8 4 18 0 18-9s-8-11-12-11a20 20 0 0 1 18-10z' fill='%23c0392b'/%3E%3Ccircle cx='38' cy='22' r='5' fill='%23fff3d6'/%3E%3C/svg%3E">
+</head>
+<body>
+  <!-- お宝アイコン -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <radialGradient id="gGold" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#fff2a8"/><stop offset=".5" stop-color="#e3b23c"/><stop offset="1" stop-color="#8a5a12"/></radialGradient>
+      <radialGradient id="gJade" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#b9f5d0"/><stop offset=".5" stop-color="#2e9e6b"/><stop offset="1" stop-color="#0d4a32"/></radialGradient>
+      <radialGradient id="gBronze" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#d9f0e4"/><stop offset=".55" stop-color="#5fa38a"/><stop offset="1" stop-color="#2b5547"/></radialGradient>
+      <radialGradient id="gPearl" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#efe6f5"/><stop offset="1" stop-color="#b9a7c7"/></radialGradient>
+    </defs>
+    <symbol id="i-magatama" viewBox="-20 -20 40 40">
+      <path d="M2-16a15 15 0 1 1-14 22c6 3 14 0 14-7s-6-9-9-9a14 14 0 0 1 9-6z" fill="url(#gJade)" stroke="#0b3324" stroke-width="1.2"/>
+      <circle cx="3" cy="-6" r="3.4" fill="#fdf6e3" stroke="#0b3324" stroke-width="1"/>
+    </symbol>
+    <symbol id="i-kinin" viewBox="-20 -20 40 40">
+      <rect x="-13" y="-4" width="26" height="16" rx="2" fill="url(#gGold)" stroke="#6b4310" stroke-width="1.2"/>
+      <path d="M-7-4c0-8 3-12 7-12s7 4 7 12z" fill="url(#gGold)" stroke="#6b4310" stroke-width="1.2"/>
+      <circle cx="-2" cy="-11" r="1.2" fill="#6b4310"/>
+      <text x="0" y="9" text-anchor="middle" font-size="9" fill="#6b4310" font-weight="700">王</text>
+    </symbol>
+    <symbol id="i-kagami" viewBox="-20 -20 40 40">
+      <circle r="16" fill="url(#gBronze)" stroke="#1f3d33" stroke-width="1.4"/>
+      <circle r="11.5" fill="none" stroke="#1f3d33" stroke-width="1" stroke-dasharray="2 2"/>
+      <circle r="7" fill="none" stroke="#1f3d33" stroke-width="1"/>
+      <circle r="3" fill="#c9a24a" stroke="#1f3d33" stroke-width="1"/>
+    </symbol>
+    <symbol id="i-nishiki" viewBox="-20 -20 40 40">
+      <path d="M-15-12h30v22c-5 4-10-2-15 2s-10-2-15 2z" fill="#a8243a" stroke="#4d0f19" stroke-width="1.2"/>
+      <path d="M-15-5h30M-15 3h30" stroke="#e3b23c" stroke-width="2"/>
+      <path d="M-10-12l4 7 4-7 4 7 4-7 4 7" fill="none" stroke="#f5e6c4" stroke-width="1.1"/>
+      <circle cx="-7" cy="7" r="1.6" fill="#f5e6c4"/><circle cx="3" cy="7" r="1.6" fill="#f5e6c4"/>
+    </symbol>
+    <symbol id="i-katana" viewBox="-20 -20 40 40">
+      <path d="M-14 14L12-12" stroke="#d7dde3" stroke-width="4" stroke-linecap="round"/>
+      <path d="M-14 14L12-12" stroke="#5c6670" stroke-width="1" />
+      <circle cx="11" cy="-11" r="5" fill="none" stroke="#b8862b" stroke-width="2.2"/>
+      <path d="M-11 6l5 5" stroke="#3d2412" stroke-width="5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-shinju" viewBox="-20 -20 40 40">
+      <path d="M-16 8a16 10 0 0 0 32 0z" fill="#8c6a4a" stroke="#3d2a1a" stroke-width="1.1"/>
+      <circle cx="0" cy="0" r="10" fill="url(#gPearl)" stroke="#7d6b8c" stroke-width="1"/>
+      <circle cx="-3" cy="-4" r="2.5" fill="#fff" opacity=".9"/>
+    </symbol>
+    <symbol id="i-dotaku" viewBox="-20 -20 40 40">
+      <path d="M-5-17h10l2 6h-14z" fill="url(#gBronze)" stroke="#1f3d33" stroke-width="1"/>
+      <path d="M-8-11h16l5 26h-26z" fill="url(#gBronze)" stroke="#1f3d33" stroke-width="1.3"/>
+      <path d="M-9-3h18M-11 5h22" stroke="#1f3d33" stroke-width="1" stroke-dasharray="2 1.5"/>
+    </symbol>
+    <symbol id="i-kudatama" viewBox="-20 -20 40 40">
+      <path d="M-15 0q15-14 30 0" fill="none" stroke="#7a4a1f" stroke-width="1"/>
+      <rect x="-14" y="-4" width="7" height="12" rx="3" fill="url(#gJade)" stroke="#0b3324" transform="rotate(-25 -10 2)"/>
+      <rect x="-3.5" y="-8" width="7" height="13" rx="3" fill="url(#gJade)" stroke="#0b3324"/>
+      <rect x="7" y="-4" width="7" height="12" rx="3" fill="url(#gJade)" stroke="#0b3324" transform="rotate(25 10 2)"/>
+    </symbol>
+    <symbol id="i-mark" viewBox="-20 -20 40 40">
+      <rect x="-12" y="-12" width="24" height="24" rx="3" fill="#c0392b" stroke="#6e1a12" stroke-width="1.4" transform="rotate(-8)"/>
+      <text x="0" y="6" text-anchor="middle" font-size="17" fill="#fff3d6" font-weight="800" transform="rotate(-8)">宝</text>
+    </symbol>
+  </svg>
+
+  <div id="app">
+    <header class="top">
+      <h1><span class="t-small">卑弥呼のお宝さがし</span>邪馬台国マインスイーパー</h1>
+      <div class="stats">
+        <div class="stat"><span class="lbl">残りのお宝</span><span id="st-left" class="val">0</span></div>
+        <div class="stat"><span class="lbl">挑戦</span><span id="st-try" class="val">1回目</span></div>
+        <div class="stat"><span class="lbl">時</span><span id="st-time" class="val">0:00</span></div>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <div class="mode" role="group" aria-label="操作の切り替え">
+        <button id="btn-dig" class="mode-btn on" aria-pressed="true">⛏ 掘る</button>
+        <button id="btn-mark" class="mode-btn" aria-pressed="false">印 お宝</button>
+      </div>
+      <div class="tools">
+        <button id="btn-zoom" class="icon-btn" title="拡大・縮小">🔍</button>
+        <button id="btn-bgm" class="icon-btn on" title="BGM">🎵</button>
+        <button id="btn-sfx" class="icon-btn on" title="効果音">🔔</button>
+        <button id="btn-help" class="icon-btn" title="遊び方">？</button>
+        <button id="btn-menu" class="icon-btn" title="はじめから">巻</button>
+      </div>
+    </div>
+
+    <main id="board-wrap">
+      <svg id="board" role="grid" aria-label="旧国名の地図"></svg>
+      <div id="toast" aria-live="polite"></div>
+    </main>
+
+    <footer class="hint">タップで掘る ・ 長押し／右クリックでお宝の印 ・ 数字はとなりの国に眠るお宝の数</footer>
+  </div>
+
+  <!-- タイトル -->
+  <div id="title" class="overlay show">
+    <div class="scroll">
+      <div class="seal">卑</div>
+      <h2>邪馬台国<br>マインスイーパー</h2>
+      <p class="lead">倭の国々の地に、女王・卑弥呼のお宝が眠っている。<br>お宝を<strong>掘り当てずに</strong>、すべての国を調べ尽くせ。</p>
+      <div class="treasure-row" id="title-treasures"></div>
+      <p class="warn">ひとつでも掘り当ててしまえば…<br>お宝は再び散らばり、<strong>振り出し</strong>に戻る。</p>
+      <div class="levels">
+        <button class="level" data-mines="6"><b>易</b><small>お宝 6</small></button>
+        <button class="level" data-mines="9"><b>中</b><small>お宝 9</small></button>
+        <button class="level" data-mines="12"><b>難</b><small>お宝 12</small></button>
+      </div>
+      <p class="best" id="best"></p>
+    </div>
+  </div>
+
+  <!-- 遊び方 -->
+  <div id="help" class="overlay">
+    <div class="scroll">
+      <h2>遊び方</h2>
+      <ol class="rules">
+        <li>地図のマスは<strong>旧国（令制国）68か国</strong>。となり合う六角形が「となりの国」です。</li>
+        <li>国を<strong>タップ</strong>すると掘ります。お宝がなければ、となりの国に眠るお宝の数が<strong>漢数字</strong>で現れます。</li>
+        <li>お宝がありそうな国は<strong>長押し</strong>（パソコンは右クリック）か「印」モードで<span class="mk">宝</span>の印をつけます。</li>
+        <li>数字の国をタップすると、印の数が合っていればまわりを一気に掘れます。</li>
+        <li>お宝を掘り当ててしまうと<strong>振り出し</strong>。お宝は別の国へ散らばります。</li>
+        <li>お宝のない国をすべて掘りきれば、卑弥呼のお宝はあなたのものです。</li>
+      </ol>
+      <p class="small">最初のひと掘りでは、お宝を掘り当てることはありません。</p>
+      <button class="primary" data-close>わかった</button>
+    </div>
+  </div>
+
+  <!-- 結果 -->
+  <div id="result" class="overlay">
+    <div class="scroll">
+      <div class="seal" id="res-seal">失</div>
+      <h2 id="res-title"></h2>
+      <p id="res-text"></p>
+      <div class="treasure-row" id="res-treasures"></div>
+      <div class="res-btns">
+        <button class="primary" id="res-next">もう一度</button>
+        <button class="secondary" id="res-menu">難易度をえらぶ</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>
