@@ -16,9 +16,11 @@ const DICT = {
     'tool.sfx': '効果音',
     'tool.help': '遊び方',
     'tool.menu': 'トップに戻る',
-    'mode.dig': '⛏ 掘る',
-    'mode.mark': '<span class="mk">盟</span> 印をつける',
-    'hint': 'タップで掘る ・ 長押し／右クリックで同盟国の印 ・ 数字はとなりにある同盟国の数',
+    'mode.dig': '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#i-shovel" width="40" height="40"/></svg> 掘る',
+    'mode.mark': '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#i-mark" width="40" height="40"/></svg> 旗を立てる',
+    'hint': 'タップで掘る ・ 長押し{pc2}で旗を立てる ・ 数字はとなりにある同盟国の数',
+    'hint.pc': '／右クリック',
+    'help.pc': '（パソコンは右クリック）',
     'title.h': '邪馬台国<br>マインスイーパー',
     'title.lead': '女王・卑弥呼は、同盟を結んだ国々にお宝を贈った。<br>倭の国々を調べ、<strong>どの国が同盟国か</strong>を見つけ出せ。',
     'title.warn': 'ただし、同盟国の地を掘り荒らしてしまえば…<br>同盟は結び直され、お宝は散らばり、<strong>振り出し</strong>に戻る。',
@@ -34,8 +36,8 @@ const DICT = {
     'help.h': '遊び方',
     'help.rules': `<li>地図のマスは<strong>旧国（令制国）68か国</strong>。となり合う六角形が「となりの国」です。</li>
 <li>国を<strong>タップ</strong>すると掘って調べます。同盟国でなければ、<strong>となりにある同盟国の数</strong>が漢数字で現れます。</li>
-<li>同盟国だと思う国は<strong>長押し</strong>（パソコンは右クリック）か「印をつける」モードで<span class="mk">盟</span>の印をつけます。</li>
-<li>数字の国をタップすると、印の数が合っていればまわりを一気に掘れます。</li>
+<li>同盟国だと思う国には、<strong>長押し</strong>{pc}か「旗を立てる」モードで<span class="flag-ico"><svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#i-mark" width="40" height="40"/></svg></span><strong>旗</strong>を立てます。</li>
+<li>数字の国をタップすると、立てた旗の数が合っていれば、まわりを一気に掘れます。</li>
 <li>同盟国を掘ってしまうと、贈られたお宝を掘り荒らしたことになり<strong>振り出し</strong>。卑弥呼は同盟を結び直し、お宝は別の国へ散らばります。</li>
 <li>同盟国でない国をすべて掘りきれば、卑弥呼の同盟国がすべて明らかになります。</li>`,
     'help.small': '最初のひと掘りでは、同盟国を掘ってしまうことはありません。',
@@ -99,9 +101,11 @@ const DICT = {
     'tool.sfx': 'Sound effects',
     'tool.help': 'How to play',
     'tool.menu': 'Back to top',
-    'mode.dig': '⛏ Dig',
-    'mode.mark': '<span class="mk">盟</span> Mark ally',
-    'hint': 'Tap to dig · Long-press / right-click to mark an ally · Numbers show allies in neighboring provinces',
+    'mode.dig': '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#i-shovel" width="40" height="40"/></svg> Dig',
+    'mode.mark': '<svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#i-mark" width="40" height="40"/></svg> Flag',
+    'hint': 'Tap to dig · Long-press{pc2} to plant a flag · Numbers show allies in neighboring provinces',
+    'hint.pc': ' / right-click',
+    'help.pc': ' (right-click on a computer)',
     'title.h': 'Yamatai<br>Minesweeper',
     'title.lead': 'Queen Himiko sent treasures to the provinces allied with her.<br>Search the old provinces of Japan and <strong>find out which ones are her allies</strong>.',
     'title.warn': 'But dig up an ally\'s land, and she forms new alliances —<br>the treasures scatter and you go <strong>back to square one</strong>.',
@@ -117,8 +121,8 @@ const DICT = {
     'help.h': 'How to play',
     'help.rules': `<li>The map shows the <strong>68 old provinces of Japan</strong>. Hexagons that touch are neighbors.</li>
 <li><strong>Tap</strong> a province to dig. If it is not an ally, a number shows <strong>how many allies</strong> are in the neighboring provinces.</li>
-<li><strong>Long-press</strong> (right-click on a computer) or use "Mark ally" mode to put a <span class="mk">盟</span> mark on a province you think is an ally.</li>
-<li>Tap a number when the right number of marks is around it to dig all the other neighbors at once.</li>
+<li><strong>Long-press</strong>{pc} or use "Flag" mode to plant a <span class="flag-ico"><svg class="ico" viewBox="0 0 40 40" aria-hidden="true"><use href="#i-mark" width="40" height="40"/></svg></span><strong>flag</strong> on a province you think is an ally.</li>
+<li>Tap a number when the right number of flags is around it to dig all the other neighbors at once.</li>
 <li>Dig up an ally and you have plundered Himiko's gift: <strong>back to square one</strong>. She forms new alliances, and the treasures scatter to new provinces.</li>
 <li>Dig every province that is not an ally, and all of Himiko's allies are revealed.</li>`,
     'help.small': 'Your first dig never hits an ally.',
@@ -184,9 +188,16 @@ const listeners = [];
 
 export const getLang = () => lang;
 
+// どの文にも使える値（Web 版とアプリで変わる操作の説明など）。関数ならそのつど呼ぶ
+const globals = {};
+export const setGlobals = (g) => Object.assign(globals, g);
+
 export function t(key, vars = {}) {
   const s = DICT[lang][key] ?? DICT.ja[key] ?? key;
-  return s.replace(/\{(\w+)\}/g, (_, k) => (vars[k] ?? ''));
+  return s.replace(/\{(\w+)\}/g, (_, k) => {
+    const v = vars[k] ?? globals[k];
+    return v === undefined ? '' : typeof v === 'function' ? v() : v;
+  });
 }
 
 // data-i18n（文字）・data-i18n-html（タグ入り）・data-i18n-title・data-i18n-href の付いた要素を書き換える

@@ -14,7 +14,7 @@ Play Console の「ストアの掲載情報」に貼り付けて使います。�
 
 スクリーンショットの順番（1 枚目がいちばん大事。検索結果にも出る）
 
-1. 卑弥呼の同盟国を探し出せ！（プレイ画面・数字と「盟」の印）
+1. 卑弥呼の同盟国を探し出せ！（プレイ画面・数字と旗）
 2. 68か国の旧国名がそのまま地図に（日本地図の全体）
 3. 同盟国を掘ったら振り出し！（失敗の瞬間）
 4. 同盟国をすべて見つけてクリア（クリア画面・お宝）
@@ -61,8 +61,8 @@ Play Console の「ストアの掲載情報」に貼り付けて使います。�
 
 ■ 遊び方
 ・国をタップして掘ると、となりにある同盟国の数が漢数字で現れます
-・同盟国だと思う国には、長押しで「盟」の印をつけます
-・数字の国をタップすると、印の数が合っていれば、まわりの国を一気に掘れます
+・同盟国だと思う国には、長押しで旗を立てます
+・数字の国をタップすると、立てた旗の数が合っていれば、まわりの国を一気に掘れます
 ・同盟国を掘ってしまうと、贈られたお宝を掘り荒らしたことになり振り出し。卑弥呼は同盟を結び直し、お宝は別の国へ散らばります
 ・同盟国でない国をすべて掘りきれば、卑弥呼の同盟国がすべて明らかに！
 
@@ -114,8 +114,8 @@ Instead of mines, the board hides Himiko's allies. Use the number hints to work 
 
 HOW TO PLAY
 - Tap a province to dig. A number shows how many allies are in the neighboring provinces.
-- Long-press to put a "盟" (ally) mark on a province you think is an ally.
-- Tap a number when the right number of marks is around it to dig all the other neighbors at once.
+- Long-press to plant a flag on a province you think is an ally.
+- Tap a number when the right number of flags is around it to dig all the other neighbors at once.
 - Dig up an ally and you have plundered Himiko's gift: back to square one. She forms new alliances, and the treasures scatter to new provinces.
 - Dig every province that is not an ally, and all of Himiko's allies are revealed!
 

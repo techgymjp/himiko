@@ -1,6 +1,6 @@
 import { PROVINCES, buildNeighbors } from './map.js';
 import { sound } from './audio.js';
-import { t, getLang, applyI18n, setLang, onLangChange } from './i18n.js';
+import { t, getLang, applyI18n, setLang, onLangChange, setGlobals } from './i18n.js';
 
 // ---------- 定数 ----------
 const TREASURES = ['magatama', 'kinin', 'kagami', 'nishiki', 'katana', 'shinju', 'dotaku', 'kudatama'].map((id) => ({ id }));
@@ -121,8 +121,8 @@ function buildBoard() {
     const g = el('g', { class: 'tile', transform: `translate(${x.toFixed(2)},${y.toFixed(2)})`, tabindex: 0, role: 'gridcell', 'data-i': i }, layers.tiles);
     const body = el('g', { class: 'body' }, g);
     el('polygon', { class: 'hex', points: hexPoints(S - 1.2) }, body);
-    const name = el('text', { class: 'name', y: 4 }, body);
-    const num = el('text', { class: 'num', y: 13 }, body);
+    const name = el('text', { class: 'name', y: 0 }, body);
+    const num = el('text', { class: 'num', y: 15 }, body);
     el('use', { class: 'icon', href: '#i-magatama', x: -17, y: -17, width: 34, height: 34 }, body);
     el('use', { class: 'flag', href: '#i-mark', x: -15, y: -15, width: 30, height: 30 }, body);
     const title = el('title', {}, g);
@@ -184,7 +184,7 @@ function newBoard() {
   tileEls.forEach((t) => {
     t.g.setAttribute('class', 'tile');
     t.num.textContent = '';
-    t.name.setAttribute('y', 4);
+    t.name.setAttribute('y', 0);
   });
   // 埋めるお宝の種類だけ先に決める（場所は最初のひと掘りで決定）
   st.treasureSet = [];
@@ -304,7 +304,7 @@ function renderOpen(i, depth = 0) {
   setTimeout(() => {
     te.g.setAttribute('class', `tile open pop n${c.n}`);
     te.num.textContent = numText(c.n);
-    te.name.setAttribute('y', c.n ? -9 : 4);
+    te.name.setAttribute('y', c.n ? -11 : 0);
     te.g.setAttribute('aria-label', t(c.n ? 'tile.near' : 'tile.none', { p: pName(PROVINCES[i]), n: c.n }));
   }, depth * 45);
 }
@@ -422,11 +422,11 @@ function renderAll() {
     if (c.open) {
       t.g.setAttribute('class', `tile open n${c.n}`);
       t.num.textContent = numText(c.n);
-      t.name.setAttribute('y', c.n ? -9 : 4);
+      t.name.setAttribute('y', c.n ? -11 : 0);
     } else {
       t.g.setAttribute('class', `tile pop${c.flag ? ' flagged' : ''}`);
       t.num.textContent = '';
-      t.name.setAttribute('y', 4);
+      t.name.setAttribute('y', 0);
     }
   });
 }
@@ -456,7 +456,7 @@ function scatter(hitIndex) {
   tileEls.forEach((t, k) => {
     setTimeout(() => t.g.setAttribute('class', 'tile pop'), 150 + Math.random() * 500);
     t.num.textContent = '';
-    t.name.setAttribute('y', 4);
+    t.name.setAttribute('y', 0);
   });
 
   const hit = st.cells[hitIndex];
@@ -831,6 +831,8 @@ sound.bgmOn = store.get('bgm', true);
 sound.sfxOn = store.get('sfx', true);
 $('btn-bgm').classList.toggle('on', sound.bgmOn);
 $('btn-sfx').classList.toggle('on', sound.sfxOn);
+// スマホアプリでは、パソコン（右クリック）の操作説明は出さない
+setGlobals({ pc: () => (NATIVE ? '' : t('help.pc')), pc2: () => (NATIVE ? '' : t('hint.pc')) });
 applyI18n();
 buildBoard();
 newBoard();
