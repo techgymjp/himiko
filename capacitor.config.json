@@ -1,0 +1,8 @@
+{
+  "appId": "jp.techgym.himiko",
+  "appName": "邪馬台国",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#2a1d14"
+  }
+}

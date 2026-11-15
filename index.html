@@ -73,25 +73,25 @@
 
   <div id="app">
     <header class="top">
-      <h1><span class="t-small">卑弥呼のお宝さがし</span>邪馬台国マインスイーパー</h1>
+      <h1><span class="t-small" data-i18n="head.sub">卑弥呼のお宝さがし</span><span class="t-main" data-i18n="head.main">邪馬台国</span><span class="t-sub" data-i18n="head.main2">マインスイーパー</span></h1>
       <div class="stats">
-        <div class="stat"><span class="lbl">残りのお宝</span><span id="st-left" class="val">0</span></div>
-        <div class="stat"><span class="lbl">挑戦</span><span id="st-try" class="val">1回目</span></div>
-        <div class="stat"><span class="lbl">時</span><span id="st-time" class="val">0:00</span></div>
+        <div class="stat"><span class="lbl" data-i18n="stat.left">残りのお宝</span><span id="st-left" class="val">0</span></div>
+        <div class="stat"><span class="lbl" data-i18n="stat.try">挑戦</span><span id="st-try" class="val">1回目</span></div>
+        <div class="stat"><span class="lbl" data-i18n="stat.time">時</span><span id="st-time" class="val">0:00</span></div>
+      </div>
+      <div class="tools">
+        <button id="btn-zoom" class="icon-btn" data-i18n-title="tool.zoom" title="拡大・縮小">🔍</button>
+        <button id="btn-bgm" class="icon-btn on" data-i18n-title="tool.bgm" title="BGM">🎵</button>
+        <button id="btn-sfx" class="icon-btn on" data-i18n-title="tool.sfx" title="効果音">🔔</button>
+        <button id="btn-help" class="icon-btn" data-i18n-title="tool.help" title="遊び方">？</button>
+        <button id="btn-menu" class="icon-btn" data-i18n-title="tool.menu" title="トップに戻る">巻</button>
       </div>
     </header>
 
     <div class="toolbar">
       <div class="mode" role="group" aria-label="操作の切り替え">
-        <button id="btn-dig" class="mode-btn on" aria-pressed="true">⛏ 掘る</button>
-        <button id="btn-mark" class="mode-btn" aria-pressed="false">印 お宝</button>
-      </div>
-      <div class="tools">
-        <button id="btn-zoom" class="icon-btn" title="拡大・縮小">🔍</button>
-        <button id="btn-bgm" class="icon-btn on" title="BGM">🎵</button>
-        <button id="btn-sfx" class="icon-btn on" title="効果音">🔔</button>
-        <button id="btn-help" class="icon-btn" title="遊び方">？</button>
-        <button id="btn-menu" class="icon-btn" title="はじめから">巻</button>
+        <button id="btn-dig" class="mode-btn on" aria-pressed="true" data-i18n="mode.dig">⛏ 掘る</button>
+        <button id="btn-mark" class="mode-btn" aria-pressed="false" data-i18n="mode.mark">印 お宝</button>
       </div>
     </div>
 
@@ -100,31 +100,62 @@
       <div id="toast" aria-live="polite"></div>
     </main>
 
-    <footer class="hint">タップで掘る ・ 長押し／右クリックでお宝の印 ・ 数字はとなりの国に眠るお宝の数</footer>
+    <footer class="hint" data-i18n="hint">タップで掘る ・ 長押し／右クリックでお宝の印 ・ 数字はとなりの国に眠るお宝の数</footer>
   </div>
 
   <!-- タイトル -->
   <div id="title" class="overlay show">
     <div class="scroll">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="ja">日本語</button>
+        <button type="button" data-lang="en">English</button>
+      </div>
       <div class="seal">卑</div>
-      <h2>邪馬台国<br>マインスイーパー</h2>
-      <p class="lead">倭の国々の地に、女王・卑弥呼のお宝が眠っている。<br>お宝を<strong>掘り当てずに</strong>、すべての国を調べ尽くせ。</p>
+      <h2 data-i18n-html="title.h">邪馬台国<br>マインスイーパー</h2>
+      <p class="lead" data-i18n-html="title.lead">倭の国々の地に、女王・卑弥呼のお宝が眠っている。<br>お宝を<strong>掘り当てずに</strong>、すべての国を調べ尽くせ。</p>
       <div class="treasure-row" id="title-treasures"></div>
-      <p class="warn">ひとつでも掘り当ててしまえば…<br>お宝は再び散らばり、<strong>振り出し</strong>に戻る。</p>
+      <p class="warn" data-i18n-html="title.warn">ひとつでも掘り当ててしまえば…<br>お宝は再び散らばり、<strong>振り出し</strong>に戻る。</p>
       <div class="levels">
         <button class="level" data-mines="6"><b>易</b><small>お宝 6</small></button>
         <button class="level" data-mines="9"><b>中</b><small>お宝 9</small></button>
         <button class="level" data-mines="12"><b>難</b><small>お宝 12</small></button>
       </div>
+      <button class="secondary" id="title-help" data-i18n="title.help">あそびかた</button>
       <p class="best" id="best"></p>
+      <div id="legal" hidden>
+        <span id="buildInfo"></span>
+        <a href="https://techgym.jp/privacy-policy/" data-i18n-href="url.privacy" data-i18n="legal.privacy" target="_blank" rel="noopener">プライバシーポリシー</a>
+        <span id="adPrivacy" hidden>｜<a href="#" id="adPrivacyLink" data-i18n="legal.ads">広告の設定</a></span>
+      </div>
     </div>
+  </div>
+
+  <!-- ポーズ -->
+  <div id="pause" class="overlay">
+    <div class="scroll">
+      <div class="seal">休</div>
+      <h2 data-i18n="pause.h">ひと休み</h2>
+      <p data-i18n="pause.p">時は止まっています。</p>
+      <div class="res-btns">
+        <button class="primary" id="pause-resume" data-i18n="pause.resume">再開する</button>
+        <button class="secondary" id="pause-top" data-i18n="pause.top">トップに戻る</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- リワード広告：掘り当てる前に戻る -->
+  <div id="redo" class="redo" hidden>
+    <p class="redo-title" data-i18n="redo.title">お宝を掘り当ててしまった…</p>
+    <button class="primary" id="redo-watch">広告を見て、掘る前に戻る</button>
+    <p class="redo-note" id="redo-note"></p>
+    <button class="redo-skip" id="redo-skip">振り出しに戻る</button>
   </div>
 
   <!-- 遊び方 -->
   <div id="help" class="overlay">
     <div class="scroll">
-      <h2>遊び方</h2>
-      <ol class="rules">
+      <h2 data-i18n="help.h">遊び方</h2>
+      <ol class="rules" data-i18n-html="help.rules">
         <li>地図のマスは<strong>旧国（令制国）68か国</strong>。となり合う六角形が「となりの国」です。</li>
         <li>国を<strong>タップ</strong>すると掘ります。お宝がなければ、となりの国に眠るお宝の数が<strong>漢数字</strong>で現れます。</li>
         <li>お宝がありそうな国は<strong>長押し</strong>（パソコンは右クリック）か「印」モードで<span class="mk">宝</span>の印をつけます。</li>
@@ -132,8 +163,8 @@
         <li>お宝を掘り当ててしまうと<strong>振り出し</strong>。お宝は別の国へ散らばります。</li>
         <li>お宝のない国をすべて掘りきれば、卑弥呼のお宝はあなたのものです。</li>
       </ol>
-      <p class="small">最初のひと掘りでは、お宝を掘り当てることはありません。</p>
-      <button class="primary" data-close>わかった</button>
+      <p class="small" data-i18n="help.small">最初のひと掘りでは、お宝を掘り当てることはありません。</p>
+      <button class="primary" data-close data-i18n="help.ok">わかった</button>
     </div>
   </div>
 
@@ -146,11 +177,15 @@
       <div class="treasure-row" id="res-treasures"></div>
       <div class="res-btns">
         <button class="primary" id="res-next">もう一度</button>
-        <button class="secondary" id="res-menu">難易度をえらぶ</button>
+        <button class="secondary" id="res-menu" data-i18n="res.top">トップに戻る</button>
+        <button class="secondary" id="res-share" hidden data-i18n="res.share">📤 結果をシェア</button>
       </div>
     </div>
   </div>
 
+  <script src="js/build-info.js"></script>
+  <script src="js/ads-config.js"></script>
+  <script src="js/ads.js"></script>
   <script type="module" src="js/game.js"></script>
 </body>
 </html>

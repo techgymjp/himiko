@@ -71,6 +71,17 @@ class Sound {
     if (!on) this.stopBgm();
   }
 
+  // 広告の表示中・アプリが裏に回ったときに音を止める
+  suspend() {
+    this.suspended = true;
+    if (this.ctx && this.ctx.state === 'running') this.ctx.suspend();
+  }
+
+  resume() {
+    this.suspended = false;
+    if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+  }
+
   setSfx(on) {
     this.sfxOn = on;
     if (this.ctx) this.sfxBus.gain.setTargetAtTime(on ? 0.8 : 0, this.ctx.currentTime, 0.05);

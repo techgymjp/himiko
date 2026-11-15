@@ -53,6 +53,7 @@ h1 {
   line-height: 1.15;
 }
 .t-small { display: block; font-size: .5em; color: var(--paper-2); letter-spacing: .3em; }
+.t-main, .t-sub { display: inline; }
 .stats { display: flex; gap: 8px; }
 .stat {
   background: #0003;
@@ -309,16 +310,131 @@ h1 {
 .rules li { margin-bottom: 4px; }
 .mk { display: inline-block; background: var(--shu); color: #fff3d6; padding: 0 4px; border-radius: 3px; font-weight: 800; }
 
+/* ---------- スマホ（縦長・幅の狭い画面） ---------- */
 @media (max-width: 600px) {
-  #app { padding-left: 8px; padding-right: 8px; }
-  .stat { min-width: 54px; padding: 3px 6px; }
-  .stat .val { font-size: 15px; }
-  .mode-btn { padding: 7px 11px; font-size: 14px; }
-  .icon-btn { width: 34px; height: 34px; font-size: 14px; }
-  .tools { gap: 4px; }
+  #app { padding-left: 10px; padding-right: 10px; }
+  .top {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "title tools" "stats stats";
+    gap: 8px;
+  }
+  h1 { grid-area: title; }
+  .t-small { display: none; }
+  .t-main { display: block; font-size: 30px; letter-spacing: .12em; }
+  .t-sub { display: block; font-size: 13px; letter-spacing: .3em; color: var(--paper-2); }
+  .tools { grid-area: tools; justify-self: end; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .icon-btn { width: 46px; height: 46px; font-size: 21px; opacity: .6; }
+  .stats { grid-area: stats; gap: 8px; }
+  .stat { flex: 1; min-width: 0; padding: 6px 4px; border-radius: 10px; }
+  .stat .lbl { font-size: 13px; }
+  .stat .val { font-size: 24px; }
+  .toolbar { margin: 10px 0 8px; }
+  .mode { flex: 1; padding: 4px; }
+  .mode-btn { flex: 1; padding: 11px 8px; font-size: 20px; }
   .hint { display: none; }
+  /* 地図のマスを大きく（はみ出す分はスクロール） */
+  .tile .name { font-size: 15px; }
+  .tile .num { font-size: 23px; }
+  .tile.open .name { font-size: 10.5px; }
+  .tile.open.n0 .name { font-size: 14px; }
+  .legend-title { font-size: 16px; }
+  .legend-name { font-size: 13px; }
+  /* オーバーレイの文字とボタン */
+  .scroll { padding: 24px 18px 20px; }
+  .scroll h2 { font-size: 28px; }
+  .lead, .rules { font-size: 16px; }
+  .warn { font-size: 15px; }
+  .treasure-row .tr { width: 72px; font-size: 14px; }
+  .treasure-row svg { width: 48px; height: 48px; }
+  .level { padding: 14px 4px; }
+  .level b { font-size: 32px; }
+  .level small { font-size: 14px; }
+  .primary, .secondary { font-size: 18px; padding: 13px 26px; }
+  #toast { font-size: 16px; }
+}
+@media (max-width: 600px) and (max-aspect-ratio: 1/1) {
+  #board-wrap.zoom #board { min-height: 640px; }
+}
+/* 幅の狭い端末（360〜400px）でもボタンが 1 行に収まるように */
+@media (max-width: 400px) {
+  .tools { flex-wrap: nowrap; gap: 4px; }
+  .icon-btn { width: 42px; height: 42px; font-size: 19px; }
+  .t-main { font-size: 25px; letter-spacing: .04em; }
+  .t-sub { font-size: 11px; letter-spacing: .12em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* ---------- アプリ（Android）用 ---------- */
+#title-help { margin-top: 4px; }
+#legal { margin-top: 10px; font-size: 12px; color: #6b5640; }
+#legal a { color: #6b5640; }
+#legal[hidden], #legal [hidden] { display: none; }
+#buildInfo { margin-right: 8px; }
+/* 画面下のバナー広告と重ならないように */
+html.native .overlay { padding-bottom: 70px; }
+
+.redo {
+  position: fixed;
+  left: 50%;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(360px, calc(100% - 32px));
+  padding: 14px 16px 10px;
+  background: #2a1d14f2;
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+  text-align: center;
+  z-index: 8;
+  box-shadow: 0 10px 30px #000c;
+  animation: trpop .35s both;
+}
+.redo[hidden] { display: none; }
+.redo-title { margin: 0 0 8px; font-weight: 700; color: #fff3d6; }
+.redo .primary { margin: 0; width: 100%; }
+.redo .primary:disabled { opacity: .6; }
+.redo-note { margin: 6px 0 0; font-size: 12px; color: var(--paper-2); }
+.redo-skip {
+  margin-top: 6px;
+  border: 0;
+  background: none;
+  color: var(--paper-2);
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+/* 言語の切り替え */
+.lang { position: absolute; top: 10px; right: 10px; display: flex; gap: 4px; }
+.lang button {
+  border: 1px solid #6b5640;
+  background: transparent;
+  color: #6b5640;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 13px;
+}
+.lang button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+html[lang="en"] .scroll h2 { letter-spacing: .02em; }
+html[lang="en"] .level b { font-size: 20px; }
+html[lang="en"] .t-main { letter-spacing: .04em; }
+html[lang="en"] .mode-btn { font-size: 15px; }
+html[lang="en"] .stat .val { font-size: 18px; }
+@media (max-width: 600px) {
+  html[lang="en"] .t-main { font-size: 24px; }
+  html[lang="en"] .t-sub { letter-spacing: .05em; }
+  html[lang="en"] .mode-btn { font-size: 18px; }
+  html[lang="en"] .level b { font-size: 22px; }
+  html[lang="en"] .stat .val { font-size: 22px; }
+}
+/* 英語の国名はマスごとに文字の大きさを変える（--fs は game.js が決める） */
+html[lang="en"] .tile .name { font-size: var(--fs, 11px); }
+html[lang="en"] .tile.open .name { font-size: calc(var(--fs, 11px) * .8); }
+html[lang="en"] .tile.open.n0 .name { font-size: var(--fs, 11px); }
+html[lang="en"] .t-main { margin-right: .3em; }
+@media (max-width: 600px) { html[lang="en"] .t-main { margin-right: 0; } }
+html[lang="en"] .sea-label { letter-spacing: .25em; }
+html[lang="en"] .level small { white-space: nowrap; font-size: 12px; }
+.lang { position: static; justify-content: flex-end; margin: -12px -8px 6px 0; }

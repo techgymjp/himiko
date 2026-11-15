@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">邪馬台国</string>
+    <string name="title_activity_main">邪馬台国</string>
+    <string name="package_name">jp.techgym.himiko</string>
+    <string name="custom_url_scheme">jp.techgym.himiko</string>
+    <!-- AdMob のアプリ ID（Android アプリ「邪馬台国マインスイーパー」） -->
+    <string name="admob_app_id">ca-app-pub-6411535997477460~7851718556</string>
+</resources>

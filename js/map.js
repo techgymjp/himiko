@@ -84,3 +84,25 @@ export function buildNeighbors(list) {
     DIRS.map(([dc, dr]) => index.get(`${p.c + dc},${p.r + dr}`)).filter(i => i !== undefined)
   );
 }
+
+// 英語表示用のローマ字（長音の記号は省く）
+const EN = {
+  佐渡: 'Sado', 出羽: 'Dewa', 陸奥: 'Mutsu', 能登: 'Noto', 越後: 'Echigo', 下野: 'Shimotsuke', 常陸: 'Hitachi',
+  加賀: 'Kaga', 越中: 'Etchu', 信濃: 'Shinano', 上野: 'Kozuke', 下総: 'Shimosa', 越前: 'Echizen', 飛騨: 'Hida',
+  甲斐: 'Kai', 武蔵: 'Musashi', 上総: 'Kazusa', 安房: 'Awa', 丹後: 'Tango', 若狭: 'Wakasa', 近江: 'Omi',
+  美濃: 'Mino', 尾張: 'Owari', 駿河: 'Suruga', 相模: 'Sagami', 隠岐: 'Oki', 因幡: 'Inaba', 但馬: 'Tajima',
+  丹波: 'Tamba', 山城: 'Yamashiro', 伊勢: 'Ise', 三河: 'Mikawa', 遠江: 'Totomi', 伊豆: 'Izu', 出雲: 'Izumo',
+  伯耆: 'Hoki', 美作: 'Mimasaka', 播磨: 'Harima', 摂津: 'Settsu', 伊賀: 'Iga', 志摩: 'Shima', 長門: 'Nagato',
+  石見: 'Iwami', 備後: 'Bingo', 備中: 'Bitchu', 備前: 'Bizen', 淡路: 'Awaji', 河内: 'Kawachi', 大和: 'Yamato',
+  対馬: 'Tsushima', 豊前: 'Buzen', 周防: 'Suo', 安芸: 'Aki', 讃岐: 'Sanuki', 阿波: 'Awa', 和泉: 'Izumi',
+  紀伊: 'Kii', 壱岐: 'Iki', 筑前: 'Chikuzen', 豊後: 'Bungo', 伊予: 'Iyo', 土佐: 'Tosa', 肥前: 'Hizen',
+  筑後: 'Chikugo', 日向: 'Hyuga', 肥後: 'Higo', 大隅: 'Osumi', 薩摩: 'Satsuma',
+};
+const REGION_EN = {
+  畿内: 'Kinai', 東海道: 'Tokaido', 東山道: 'Tosando', 北陸道: 'Hokurikudo',
+  山陰道: 'San\'indo', 山陽道: 'San\'yodo', 南海道: 'Nankaido', 西海道: 'Saikaido',
+};
+PROVINCES.forEach((p) => {
+  p.en = EN[p.name];
+  p.regionEn = REGION_EN[p.region];
+});
