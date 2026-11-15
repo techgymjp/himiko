@@ -17,7 +17,7 @@ const DICT = {
     'tool.help': '遊び方',
     'tool.menu': 'トップに戻る',
     'mode.dig': '⛏ 掘る',
-    'mode.mark': '盟 同盟',
+    'mode.mark': '<span class="mk">盟</span> 印をつける',
     'hint': 'タップで掘る ・ 長押し／右クリックで同盟国の印 ・ 数字はとなりにある同盟国の数',
     'title.h': '邪馬台国<br>マインスイーパー',
     'title.lead': '女王・卑弥呼は、同盟を結んだ国々にお宝を贈った。<br>倭の国々を調べ、<strong>どの国が同盟国か</strong>を見つけ出せ。',
@@ -34,7 +34,7 @@ const DICT = {
     'help.h': '遊び方',
     'help.rules': `<li>地図のマスは<strong>旧国（令制国）68か国</strong>。となり合う六角形が「となりの国」です。</li>
 <li>国を<strong>タップ</strong>すると掘って調べます。同盟国でなければ、<strong>となりにある同盟国の数</strong>が漢数字で現れます。</li>
-<li>同盟国だと思う国は<strong>長押し</strong>（パソコンは右クリック）か「同盟」モードで<span class="mk">盟</span>の印をつけます。</li>
+<li>同盟国だと思う国は<strong>長押し</strong>（パソコンは右クリック）か「印をつける」モードで<span class="mk">盟</span>の印をつけます。</li>
 <li>数字の国をタップすると、印の数が合っていればまわりを一気に掘れます。</li>
 <li>同盟国を掘ってしまうと、贈られたお宝を掘り荒らしたことになり<strong>振り出し</strong>。卑弥呼は同盟を結び直し、お宝は別の国へ散らばります。</li>
 <li>同盟国でない国をすべて掘りきれば、卑弥呼の同盟国がすべて明らかになります。</li>`,
@@ -100,7 +100,7 @@ const DICT = {
     'tool.help': 'How to play',
     'tool.menu': 'Back to top',
     'mode.dig': '⛏ Dig',
-    'mode.mark': '盟 Mark',
+    'mode.mark': '<span class="mk">盟</span> Mark ally',
     'hint': 'Tap to dig · Long-press / right-click to mark an ally · Numbers show allies in neighboring provinces',
     'title.h': 'Yamatai<br>Minesweeper',
     'title.lead': 'Queen Himiko sent treasures to the provinces allied with her.<br>Search the old provinces of Japan and <strong>find out which ones are her allies</strong>.',
@@ -117,7 +117,7 @@ const DICT = {
     'help.h': 'How to play',
     'help.rules': `<li>The map shows the <strong>68 old provinces of Japan</strong>. Hexagons that touch are neighbors.</li>
 <li><strong>Tap</strong> a province to dig. If it is not an ally, a number shows <strong>how many allies</strong> are in the neighboring provinces.</li>
-<li><strong>Long-press</strong> (right-click on a computer) or use "Mark" mode to put a <span class="mk">盟</span> mark on a province you think is an ally.</li>
+<li><strong>Long-press</strong> (right-click on a computer) or use "Mark ally" mode to put a <span class="mk">盟</span> mark on a province you think is an ally.</li>
 <li>Tap a number when the right number of marks is around it to dig all the other neighbors at once.</li>
 <li>Dig up an ally and you have plundered Himiko's gift: <strong>back to square one</strong>. She forms new alliances, and the treasures scatter to new provinces.</li>
 <li>Dig every province that is not an ally, and all of Himiko's allies are revealed.</li>`,
@@ -133,7 +133,7 @@ const DICT = {
     'res.lose.text': 'You unearthed the {t} that Himiko sent to her ally, {p}.<br>She forms new alliances, and the treasures scatter across the land again…',
     'res.lose.next': 'Start over',
     'res.win.title': 'You found all of<br>Himiko\'s allies!',
-    'res.win.text': '{lv} / {n} tries / {t}{redo}',
+    'res.win.text': '{lv} / tries: {n} / {t}{redo}',
     'res.win.redo': ' / rewinds: {n}',
     'res.win.best': '<br><strong>✦ New personal best ✦</strong>',
     'res.win.next': 'Play again',
@@ -153,7 +153,7 @@ const DICT = {
     'toast.copyFail': 'Could not copy',
     'share.title': 'Yamatai Minesweeper',
     'share.dialog': 'Share result',
-    'share.text': '🏺I found all {m} of Queen Himiko\'s allies in Yamatai Minesweeper!\n{lv}, {n} tries, {t}{redo}\n#YamataiMinesweeper #Himiko',
+    'share.text': '🏺I found all {m} of Queen Himiko\'s allies in Yamatai Minesweeper!\n{lv}, tries: {n}, {t}{redo}\n#YamataiMinesweeper #Himiko',
     'share.redo': ' (rewinds: {n})',
     'share.lose': "🏺Searching for Queen Himiko's allies in Yamatai Minesweeper…\nand I dug up her ally {p}! {lv}, try #{n}\n#YamataiMinesweeper #Himiko",
     'share.x': '𝕏 Post',
