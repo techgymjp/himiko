@@ -23,6 +23,7 @@ const DICT = {
     'title.lead': '女王・卑弥呼は、同盟を結んだ国々にお宝を贈った。<br>倭の国々を調べ、<strong>どの国が同盟国か</strong>を見つけ出せ。',
     'title.warn': 'ただし、同盟国の地を掘り荒らしてしまえば…<br>同盟は結び直され、お宝は散らばり、<strong>振り出し</strong>に戻る。',
     'title.help': 'あそびかた',
+    'title.catch': '卑弥呼の同盟国を探し出せ！',
     'level.6': '易', 'level.9': '中', 'level.12': '難',
     'level.count': '同盟国 {n}',
     'best': '最高記録　{list}',
@@ -31,8 +32,7 @@ const DICT = {
     'legal.ads': '広告の設定',
     'url.privacy': 'https://techgym.jp/privacy-policy/',
     'help.h': '遊び方',
-    'help.rules': `<li>女王・卑弥呼は、同盟を結んだ国々に勾玉・金印・銅鏡などのお宝を贈りました。あなたの役目は、<strong>どの国が同盟国か</strong>を見つけ出すことです。</li>
-<li>地図のマスは<strong>旧国（令制国）68か国</strong>。となり合う六角形が「となりの国」です。</li>
+    'help.rules': `<li>地図のマスは<strong>旧国（令制国）68か国</strong>。となり合う六角形が「となりの国」です。</li>
 <li>国を<strong>タップ</strong>すると掘って調べます。同盟国でなければ、<strong>となりにある同盟国の数</strong>が漢数字で現れます。</li>
 <li>同盟国だと思う国は<strong>長押し</strong>（パソコンは右クリック）か「同盟」モードで<span class="mk">盟</span>の印をつけます。</li>
 <li>数字の国をタップすると、印の数が合っていればまわりを一気に掘れます。</li>
@@ -63,6 +63,7 @@ const DICT = {
     'toast.redo': '掘る前に戻った（やり直し {n}回）',
     'toast.start': '難易度「{lv}」 ― 最初のひと掘りは安全です',
     'toast.retry': '第{n}回 ― 同盟は結び直され、お宝は別の国へ',
+    'toast.zoom': '🔍で全体表示 ／ 地図は指で左右にスクロールできます',
     'toast.bgmOn': 'BGM オン', 'toast.bgmOff': 'BGM オフ',
     'toast.sfxOn': '効果音 オン', 'toast.sfxOff': '効果音 オフ',
     'toast.copied': '結果をコピーしました',
@@ -105,6 +106,7 @@ const DICT = {
     'title.lead': 'Queen Himiko sent treasures to the provinces allied with her.<br>Search the old provinces of Japan and <strong>find out which ones are her allies</strong>.',
     'title.warn': 'But dig up an ally\'s land, and she forms new alliances —<br>the treasures scatter and you go <strong>back to square one</strong>.',
     'title.help': 'How to play',
+    'title.catch': "Find Queen Himiko's allies!",
     'level.6': 'Easy', 'level.9': 'Normal', 'level.12': 'Hard',
     'level.count': '{n} allies',
     'best': 'Best: {list}',
@@ -113,8 +115,7 @@ const DICT = {
     'legal.ads': 'Ad settings',
     'url.privacy': 'https://techgym.jp/privacy-policy-en/',
     'help.h': 'How to play',
-    'help.rules': `<li>Queen Himiko sent treasures such as magatama jewels, a gold seal and bronze mirrors to the provinces allied with her. Your job is to <strong>find out which provinces are her allies</strong>.</li>
-<li>The map shows the <strong>68 old provinces of Japan</strong>. Hexagons that touch are neighbors.</li>
+    'help.rules': `<li>The map shows the <strong>68 old provinces of Japan</strong>. Hexagons that touch are neighbors.</li>
 <li><strong>Tap</strong> a province to dig. If it is not an ally, a number shows <strong>how many allies</strong> are in the neighboring provinces.</li>
 <li><strong>Long-press</strong> (right-click on a computer) or use "Mark" mode to put a <span class="mk">盟</span> mark on a province you think is an ally.</li>
 <li>Tap a number when the right number of marks is around it to dig all the other neighbors at once.</li>
@@ -145,6 +146,7 @@ const DICT = {
     'toast.redo': 'Dig undone (rewinds: {n})',
     'toast.start': '{lv} — your first dig is always safe',
     'toast.retry': 'Try #{n} — new alliances, new treasure spots',
+    'toast.zoom': 'Tap 🔍 to see the whole map, or swipe to scroll',
     'toast.bgmOn': 'Music on', 'toast.bgmOff': 'Music off',
     'toast.sfxOn': 'Sound effects on', 'toast.sfxOff': 'Sound effects off',
     'toast.copied': 'Result copied',

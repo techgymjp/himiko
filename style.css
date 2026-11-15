@@ -5,7 +5,7 @@
   --shu: #c0392b;
   --shu-dark: #7d1f16;
   --gold: #d4a437;
-  --sea: #1d3b4f;
+  --sea: #2f6f93;
   --sea-2: #24495f;
   --land: #8a9a5b;
   --land-2: #6f7f45;
@@ -172,11 +172,13 @@ h1 {
 .tile:focus { outline: none; }
 .tile:focus-visible .hex { stroke: #fff; stroke-width: 3; }
 
-.sea-label { fill: #9fc3d6; opacity: .35; font-size: 16px; letter-spacing: .5em; font-weight: 700; }
-.legend-title { fill: var(--paper); font-size: 13px; font-weight: 700; letter-spacing: .2em; }
-.legend-name { fill: var(--paper-2); font-size: 11px; }
-.legend-item.found .legend-name { fill: var(--gold); }
-.legend-item .legend-icon { opacity: .35; transition: opacity .3s; }
+.sea-label { fill: #e3f3fa; opacity: .45; font-size: 16px; letter-spacing: .5em; font-weight: 700; }
+.legend-title { fill: var(--ink); font-size: 14px; font-weight: 700; letter-spacing: .2em; }
+.legend-name { fill: #4a3a28; font-size: 12.5px; font-weight: 700; }
+.legend-item.found .legend-name { fill: var(--shu); }
+.legend-item .legend-icon { opacity: 1; transition: transform .3s; transform-box: fill-box; transform-origin: center; }
+.legend-item.found .legend-icon { transform: scale(1.12); }
+.legend-bg { fill: #f3e6c8; opacity: .93; stroke: #8a6a3a; stroke-width: 2; }
 .legend-item.found .legend-icon { opacity: 1; }
 
 .fly { pointer-events: none; }
@@ -462,3 +464,18 @@ html[lang="en"] .level small { white-space: nowrap; font-size: 12px; }
   .share-btn { font-size: 16px; padding: 10px 20px; }
   .share-btn.main { font-size: 18px; padding: 13px 26px; }
 }
+
+/* 背の低い画面ではタイトルを詰めて、難易度ボタンが最初から見えるように */
+@media (max-height: 700px) {
+  #title .seal { width: 44px; height: 44px; line-height: 44px; font-size: 26px; }
+  #title .scroll h2 { font-size: 23px; margin: 4px 0 6px; }
+  #title .levels { margin: 8px 0 4px; }
+  #title .level { padding: 9px 4px; }
+  #title .level b { font-size: 24px; }
+  #title .lang { margin-bottom: 0; }
+}
+
+.catch { margin: 4px 0 14px; font-size: 17px; font-weight: 700; color: var(--shu-dark); letter-spacing: .08em; }
+@media (max-width: 600px) { .catch { font-size: 19px; } }
+#help .lead { margin-top: 0; }
+#help .warn { margin-bottom: 4px; }

@@ -91,12 +91,12 @@ function buildBoard() {
   const pat = el('pattern', { id: 'seigaiha', width: 40, height: 20, patternUnits: 'userSpaceOnUse' }, defs);
   for (const [cx, cy] of [[0, 20], [40, 20], [20, 10], [0, 0], [40, 0]]) {
     for (const r of [19, 14, 9]) {
-      el('circle', { cx, cy, r, fill: 'none', stroke: '#9fc3d6', 'stroke-width': 1, opacity: 0.13 }, pat);
+      el('circle', { cx, cy, r, fill: 'none', stroke: '#d6eef8', 'stroke-width': 1, opacity: 0.16 }, pat);
     }
   }
   // 画面の余白まで海が続くように大きめに敷く
   const big = { x: minX - 2000, y: minY - 2000, width: maxX - minX + 4000, height: maxY - minY + 4000 };
-  el('rect', { ...big, fill: '#1d3b4f' }, board);
+  el('rect', { ...big, fill: '#2f6f93' }, board);
   el('rect', { ...big, fill: 'url(#seigaiha)' }, board);
 
   // 装飾：海の名と方位
@@ -111,7 +111,7 @@ function buildBoard() {
   layers.cart = el('text', { y: 6, 'text-anchor': 'middle', fill: '#f3e6c8', 'font-size': 15, 'font-weight': 800, 'letter-spacing': 3 }, cart);
 
   // 眠るお宝（凡例）
-  layers.legend = el('g', { transform: `translate(${(-4.5 * W) / 2}, ${1.0 * 1.5 * S})` }, board);
+  layers.legend = el('g', { transform: `translate(${(-4.5 * W) / 2}, ${1.0 * 1.5 * S - 4})` }, board);
 
   layers.tiles = el('g', {}, board);
   layers.fx = el('g', { class: 'fly' }, board);
@@ -159,17 +159,20 @@ function applyBoardText() {
 function drawLegend() {
   const g = layers.legend;
   g.innerHTML = '';
-  const head = el('text', { class: 'legend-title', x: 0, y: 0 }, g);
-  head.textContent = t('board.legend', { n: st.mines });
   const counts = new Map();
   st.cells.forEach((c) => c.treasure && counts.set(c.treasure.id, (counts.get(c.treasure.id) || 0) + 1));
   const list = TREASURES.filter((tr) => counts.has(tr.id));
+  // 海の上でもお宝が見えるよう、巻物色の下地を敷く
+  const COL = 82, ROW = 76, cols = Math.min(4, list.length), rows = Math.ceil(list.length / 4);
+  el('rect', { class: 'legend-bg', x: -14, y: -24, width: cols * COL + 18, height: 30 + rows * ROW + 4, rx: 10 }, g);
+  const head = el('text', { class: 'legend-title', x: 0, y: 0 }, g);
+  head.textContent = t('board.legend', { n: st.mines });
   list.forEach((tr, k) => {
     const col = k % 4;
     const row = Math.floor(k / 4);
-    const item = el('g', { class: 'legend-item', 'data-id': tr.id, transform: `translate(${col * 68}, ${18 + row * 58})` }, g);
-    el('use', { class: 'legend-icon', href: `#i-${tr.id}`, x: 0, y: 0, width: 34, height: 34 }, item);
-    const n = el('text', { class: 'legend-name', x: 17, y: 48, 'text-anchor': 'middle' }, item);
+    const item = el('g', { class: 'legend-item', 'data-id': tr.id, transform: `translate(${col * COL}, ${12 + row * ROW})` }, g);
+    el('use', { class: 'legend-icon', href: `#i-${tr.id}`, x: 7, y: 0, width: 50, height: 50 }, item);
+    const n = el('text', { class: 'legend-name', x: 32, y: 64, 'text-anchor': 'middle' }, item);
     n.textContent = trName(tr) + (counts.get(tr.id) > 1 ? `×${counts.get(tr.id)}` : '');
   });
 }
@@ -579,12 +582,12 @@ function goTop() {
 }
 
 let toastTimer;
-function toast(msg) {
-  const t = $('toast');
-  t.textContent = msg;
-  t.classList.add('show');
+function toast(msg, ms = 2200) {
+  const el = $('toast');
+  el.textContent = msg;
+  el.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  toastTimer = setTimeout(() => el.classList.remove('show'), ms);
 }
 
 function startLevel(mines) {
@@ -598,6 +601,8 @@ function startLevel(mines) {
   close('title');
   sound.play('start');
   toast(t('toast.start', { lv: lvName(mines) }));
+  // 拡大表示で始まるときは、全体表示とスクロールのしかたを続けて案内する
+  if (wrap.classList.contains('zoom')) setTimeout(() => { if (st.state === 'ready') toast(t('toast.zoom'), 4000); }, 2300);
 }
 
 function restartFromScratch() {
@@ -610,8 +615,8 @@ function restartFromScratch() {
 }
 
 function renderTitle() {
-  const row = $('title-treasures');
-  row.innerHTML = TREASURES.slice(0, 6)
+  const row = $('help-treasures');
+  row.innerHTML = TREASURES
     .map((tr) => `<div class="tr"><svg viewBox="0 0 34 34"><use href="#i-${tr.id}" width="34" height="34"/></svg>${trName(tr)}</div>`)
     .join('');
   document.querySelectorAll('.level').forEach((b) => {
