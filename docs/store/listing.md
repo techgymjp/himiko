@@ -8,20 +8,21 @@
 
 **簡単な説明**（80 字以内）
 
-旧国名68か国の地図で遊ぶマインスイーパー。卑弥呼のお宝を掘り当てずに、すべての国を調べ尽くせ！
+卑弥呼がお宝を贈った同盟国はどこ？ 旧国名68か国の地図で遊ぶマインスイーパー
 
 **詳しい説明**
 
-倭の国々の地に、女王・卑弥呼のお宝が眠っている――。
+女王・卑弥呼は、同盟を結んだ国々にお宝を贈った――。
+どの国が卑弥呼の同盟国なのか、倭の国々を調べて見つけ出そう。
 
 「邪馬台国マインスイーパー」は、武蔵・大和・出雲・薩摩など、昔の日本の旧国名（令制国）68か国の地図をマスにしたマインスイーパーです。
-爆弾の代わりに埋まっているのは、勾玉・金印・銅鏡・錦・刀・真珠などの卑弥呼のお宝。
+爆弾の代わりに隠れているのは、卑弥呼の同盟国。同盟国には、勾玉・金印・銅鏡・錦・刀・真珠などのお宝が贈られています。
 
 ■ 遊び方
-・国をタップして掘ると、となりの国に眠るお宝の数が漢数字で現れます
-・お宝がありそうな国には、長押しで「宝」の印をつけます
-・お宝を掘り当ててしまうと振り出し。お宝は別の国へ散らばってしまいます
-・お宝のない国をすべて掘りきればクリア！
+・国をタップして掘ると、となりにある同盟国の数が漢数字で現れます
+・同盟国だと思う国には、長押しで「盟」の印をつけます
+・同盟国を掘ってしまうと、贈られたお宝を掘り荒らしたことになり振り出し。卑弥呼は同盟を結び直し、お宝は別の国へ散らばります
+・同盟国でない国をすべて掘りきれば、卑弥呼の同盟国がすべて明らかに！
 
 ■ 特長
 ・六角形のマスで並べた、旧国名の日本地図
@@ -39,20 +40,21 @@ Yamatai Minesweeper: Himiko
 
 **Short description** (max 80 characters)
 
-Minesweeper on a map of Japan's 68 old provinces. Don't dig up Himiko's treasure!
+Minesweeper on a map of Japan's 68 old provinces: find Queen Himiko's allies!
 
 **Full description**
 
-Queen Himiko's treasures lie buried in the old provinces of Japan.
+Queen Himiko sent treasures to the provinces allied with her.
+Which provinces are her allies? Search the old land of Wa and find out.
 
 Yamatai Minesweeper is a minesweeper game played on a hexagon map of Japan's 68 historical provinces, such as Musashi, Yamato, Izumo and Satsuma.
-Instead of mines, the board hides the queen's treasures: magatama jewels, a gold seal, bronze mirrors, brocade, a sword, pearls and more.
+Instead of mines, the board hides Himiko's allies. Each ally received one of her treasures: magatama jewels, a gold seal, bronze mirrors, brocade, a sword, pearls and more.
 
 HOW TO PLAY
-- Tap a province to dig. A number shows how many treasures lie in the neighboring provinces.
-- Long-press to mark a province where you think a treasure is.
-- Dig up a treasure and you go back to square one: the treasures scatter to new provinces.
-- Dig every province without treasure to win!
+- Tap a province to dig. A number shows how many allies are in the neighboring provinces.
+- Long-press to put a "盟" (ally) mark on a province you think is an ally.
+- Dig up an ally and you have plundered Himiko's gift: back to square one. She forms new alliances, and the treasures scatter to new provinces.
+- Dig every province that is not an ally, and all of Himiko's allies are revealed!
 
 FEATURES
 - A hexagon map of Japan's old provinces
