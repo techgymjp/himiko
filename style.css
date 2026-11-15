@@ -358,8 +358,8 @@ h1 {
 @media (max-width: 600px) and (max-aspect-ratio: 1/1) {
   #board-wrap.zoom #board { min-height: 640px; }
 }
-/* 幅の狭い端末（360〜400px）でもボタンが 1 行に収まるように */
-@media (max-width: 400px) {
+/* 幅の狭い端末（360〜430px）でもボタンが 1 行に収まるように */
+@media (max-width: 430px) {
   .tools { flex-wrap: nowrap; gap: 4px; }
   .icon-btn { width: 42px; height: 42px; font-size: 19px; }
   .t-main { font-size: 25px; letter-spacing: .04em; }
@@ -381,9 +381,10 @@ html.native .overlay { padding-bottom: 70px; }
 
 .redo {
   position: fixed;
-  left: 50%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   bottom: max(24px, env(safe-area-inset-bottom));
-  transform: translateX(-50%);
   width: min(360px, calc(100% - 32px));
   padding: 14px 16px 10px;
   background: #2a1d14f2;
