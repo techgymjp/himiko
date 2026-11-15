@@ -178,7 +178,15 @@
       <div class="res-btns">
         <button class="primary" id="res-next">もう一度</button>
         <button class="secondary" id="res-menu" data-i18n="res.top">トップに戻る</button>
-        <button class="secondary" id="res-share" hidden data-i18n="res.share">📤 結果をシェア</button>
+      </div>
+      <div class="share-row" id="res-share-row">
+        <button class="share-btn main" id="res-share" data-i18n="res.share">📤 結果をシェア</button>
+        <!-- web-only -->
+        <div class="share-sub" id="share-sub" hidden>
+          <a class="share-btn" id="share-x" target="_blank" rel="noopener" data-i18n="share.x">𝕏 ポスト</a>
+          <a class="share-btn" id="share-line" target="_blank" rel="noopener">LINE</a>
+        </div>
+        <!-- /web-only -->
       </div>
     </div>
   </div>

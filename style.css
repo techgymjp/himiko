@@ -438,3 +438,27 @@ html[lang="en"] .t-main { margin-right: .3em; }
 html[lang="en"] .sea-label { letter-spacing: .25em; }
 html[lang="en"] .level small { white-space: nowrap; font-size: 12px; }
 .lang { position: static; justify-content: flex-end; margin: -12px -8px 6px 0; }
+
+/* 結果画面のシェア */
+.share-row { margin-top: 14px; padding-top: 12px; border-top: 1px dashed #6b564066; }
+.share-btn {
+  display: inline-block;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: #fff8e6;
+  color: var(--ink);
+  padding: 9px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  margin: 4px;
+}
+.share-btn.main { background: var(--gold); border-color: #8a5a12; padding: 11px 24px; font-size: 16px; }
+.share-sub { display: flex; justify-content: center; flex-wrap: wrap; }
+.share-sub[hidden] { display: none; }
+#share-x { background: #111; color: #fff; border-color: #111; }
+#share-line { background: #06c755; color: #fff; border-color: #06c755; }
+@media (max-width: 600px) {
+  .share-btn { font-size: 16px; padding: 10px 20px; }
+  .share-btn.main { font-size: 18px; padding: 13px 26px; }
+}

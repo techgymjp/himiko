@@ -24,7 +24,7 @@ if (NATIVE) document.documentElement.classList.add('native');
 const Ads = window.Ads || { available: false, canReward: false, showing: false, initDone: Promise.resolve(), showInterstitial: async () => {}, showRewarded: async () => 'unavailable', setBanner: () => {}, showPrivacyOptions: async () => {} };
 // 広告（js/ads.js）から音を止めたり戻したりできるようにする
 window.Sound = { suspend: () => sound.suspend(), resume: () => sound.resume() };
-const SHARE_URL = 'https://techgymjp.github.io/himiko/';
+const SHARE_URL = 'https://techgym.jp/column/claude-code-game-himiko/'; // 紹介記事
 const board = $('board');
 const wrap = $('board-wrap');
 
@@ -457,6 +457,7 @@ function scatter(hitIndex) {
   });
 
   const hit = st.cells[hitIndex];
+  st.lastHit = hitIndex;
   setTimeout(() => {
     st.state = 'over';
     showResult({
@@ -466,7 +467,6 @@ function scatter(hitIndex) {
       text: t('res.lose.text', { p: pName(PROVINCES[hitIndex]), t: trName(hit.treasure) }),
       next: t('res.lose.next'),
       treasures: [],
-      share: false,
     });
   }, 1700);
 }
@@ -504,13 +504,11 @@ function win() {
       text: t('res.win.text', { lv: lvName(st.mines), n: st.tries, t: fmt(st.elapsed), redo: st.redoUsed ? t('res.win.redo', { n: st.redoUsed }) : '' }) + (isBest ? t('res.win.best') : ''),
       next: t('res.win.next'),
       treasures: idx.map((k) => st.cells[k].treasure),
-      share: true,
     });
   }, 1600 + idx.length * 160 + 1200);
 }
 
-function showResult({ seal, win, title, text, next, treasures, share }) {
-  $('res-share').hidden = !share;
+function showResult({ seal, win, title, text, next, treasures }) {
   $('res-seal').textContent = seal;
   $('res-seal').classList.toggle('win', win);
   $('res-title').innerHTML = title;
@@ -526,6 +524,7 @@ function showResult({ seal, win, title, text, next, treasures, share }) {
   });
   $('res-next').textContent = next;
   $('result').dataset.win = win ? '1' : '0';
+  updateShareLinks();
   open('result');
 }
 
@@ -753,8 +752,24 @@ $('res-menu').addEventListener('click', () => {
 });
 
 // ---------- シェア ----------
+// クリア時と、同盟国を掘ってしまったときで文面を変える
+function shareText() {
+  if ($('result').dataset.win === '1') {
+    return t('share.text', { m: st.mines, lv: lvName(st.mines), n: st.tries, t: fmt(st.elapsed), redo: st.redoUsed ? t('share.redo', { n: st.redoUsed }) : '' });
+  }
+  return t('share.lose', { p: pName(PROVINCES[st.lastHit] || PROVINCES[0]), lv: lvName(st.mines), n: st.tries });
+}
+// Web 版では X・LINE のボタンも出す（アプリでは端末の共有メニューにまとまっている）
+function updateShareLinks() {
+  // web-only:start
+  const text = shareText();
+  $('share-sub').hidden = false;
+  $('share-x').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(SHARE_URL)}`;
+  $('share-line').href = `https://line.me/R/share?text=${encodeURIComponent(`${text}\n${SHARE_URL}`)}`;
+  // web-only:end
+}
 async function shareResult() {
-  const text = t('share.text', { m: st.mines, lv: lvName(st.mines), n: st.tries, t: fmt(st.elapsed), redo: st.redoUsed ? t('share.redo', { n: st.redoUsed }) : '' });
+  const text = shareText();
   const nativeShare = plugin('Share');
   if (nativeShare) {
     try { await nativeShare.share({ title: t('share.title'), text, url: SHARE_URL, dialogTitle: t('share.dialog') }); } catch { /* キャンセル */ }
