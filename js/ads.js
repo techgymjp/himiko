@@ -14,7 +14,7 @@ window.Ads = (() => {
       // 本番の広告ユニット（AdMob の Android アプリ「邪馬台国マインスイーパー」）
       production: {
         interstitial: 'ca-app-pub-6411535997477460/4580797190',
-        rewarded: 'ca-app-pub-6411535997477460/2868799279',
+        rewarded: 'ca-app-pub-6411535997477460/6213443065',
         banner: 'ca-app-pub-6411535997477460/5067882358',
       },
     },
