@@ -502,3 +502,25 @@ html[lang="en"] .level small { white-space: nowrap; font-size: 12px; }
   #board-wrap.zoom #board { min-height: 740px; }
 }
 .tile .name { dominant-baseline: central; }
+
+/* web-only:start */
+/* Web 版だけ：Google Play のアプリ版へのリンク */
+.store-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px 22px 8px 18px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  text-align: left;
+  white-space: nowrap;
+}
+.store-link .gp { color: #34c759; font-size: 22px; }
+.store-link .st { display: flex; flex-direction: column; line-height: 1.25; }
+.store-link small { font-size: 11px; color: var(--paper-2); letter-spacing: .05em; }
+.store-link b { font-size: 16px; }
+@media (max-width: 600px) { .store-link b { font-size: 17px; } .store-link small { font-size: 12px; } }
+/* web-only:end */

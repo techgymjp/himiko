@@ -26,6 +26,10 @@ const DICT = {
     'title.warn': 'ただし、同盟国の地を掘り荒らしてしまえば…<br>同盟は結び直され、お宝は散らばり、<strong>振り出し</strong>に戻る。',
     'title.help': 'あそびかた',
     'title.catch': '卑弥呼の同盟国を探し出せ！',
+    // web-only:start
+    'store.link': 'Android アプリ版',
+    'store.name': 'Google Play で入手',
+    // web-only:end
     'level.6': '易', 'level.9': '中', 'level.12': '難',
     'level.count': '同盟国 {n}',
     'best': '最高記録　{list}',
@@ -111,6 +115,10 @@ const DICT = {
     'title.warn': 'But dig up an ally\'s land, and she forms new alliances —<br>the treasures scatter and you go <strong>back to square one</strong>.',
     'title.help': 'How to play',
     'title.catch': "Find Queen Himiko's allies!",
+    // web-only:start
+    'store.link': 'Android app',
+    'store.name': 'Get it on Google Play',
+    // web-only:end
     'level.6': 'Easy', 'level.9': 'Normal', 'level.12': 'Hard',
     'level.count': '{n} allies',
     'best': 'Best: {list}',
